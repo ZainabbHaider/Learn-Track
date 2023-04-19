@@ -78,19 +78,18 @@ class PairingHeap:
 # Driver Code
 if __name__ == '__main__':
 
-	heap1, heap2 = PairingHeap(), PairingHeap()
-	heap2.Insert((5,1))
-	heap2.Insert((2,3))
+    heap1, heap2 = PairingHeap(), PairingHeap()
+    heap2.Insert((5,1))
+    heap2.Insert((2,3))
 
-	heap2.Insert((6,0))
-	heap1.Insert((8,4))
-	heap1.Insert((3,99))
-	heap1.Insert((4,66))
-
-	heap1.Join(heap2)
-
-	print(heap1.Top())
-	heap2.Delete()
-	print(heap1.Top())
-	print(heap1.Empty())
-# This code is contributed by Amartya Ghosh
+    heap2.Insert((6,0))
+    heap1.Insert((8,4))
+    heap1.Insert((3,99))
+    heap1.Insert((4,66))
+    heap1.Join(heap2)
+    heap1.Delete()
+    print(heap1.Top())
+    heap1.Insert((1,66))
+    print(heap2.Top())
+    print(heap1.Top())
+    print(heap1.Empty())
