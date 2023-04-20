@@ -19,8 +19,14 @@ class Task():
 p = PairingHeap()
 task1= Task(10,(2023, 4, 21),10,"DO DS")
 task2= Task(15,(2023, 4, 21),10,"LA")
+task3= Task(30,(2023, 4, 25),15,"CA")
+task4= Task(20,(2023, 4, 23),5,"PnS")
+
 p.Insert((task1.priority,task1.task))
-print(p.Top())
+# print(p.Top())
 p.Insert((task2.priority,task2.task))
-print(p.Top())
+# print(p.Top())
+p.Insert((task3.priority,task3.task))
+p.Insert((task4.priority,task4.task))
+p.traverse(p.root)
         

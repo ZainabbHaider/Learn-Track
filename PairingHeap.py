@@ -2,9 +2,9 @@
 class HeapNode:
     # creates a new node
     def __init__(self, key_=None, leftChild_=None, nextSibling_=None):
-        print("obj")
+        # print("obj")
         self.key = key_[0]
-        print(key_)
+        # print(key_)
         self.value = key_[1]
         self.leftChild = leftChild_
         self.nextSibling = nextSibling_
@@ -75,10 +75,19 @@ class PairingHeap:
     
     def Size(self):
         return self.size
+    
+    def traverse(self, node):
+        if not node:
+            return
+        print(node.value, node.key)
+        if node.leftChild:
+            self.traverse(node.leftChild)
+        if node.nextSibling:
+            self.traverse(node.nextSibling)
   
     
 
-# # Driver Code
+# Driver Code
 # if __name__ == '__main__':
 
 #     heap1, heap2 = PairingHeap(), PairingHeap()
@@ -90,6 +99,7 @@ class PairingHeap:
 #     heap1.Insert((4,99))
 #     heap1.Insert((4,"hij"))
 #     heap1.Insert((4,"'''k'''"))
+#     heap1.traverse(heap1.root)
 #     # heap1.Join(heap2)
 #     print(heap1.Top())
 #     heap1.Delete()
