@@ -2,7 +2,10 @@
 class HeapNode:
     # creates a new node
     def __init__(self, key_=None, leftChild_=None, nextSibling_=None):
-        self.key = key_
+        print("obj")
+        self.key = key_[0]
+        print(key_)
+        self.value = key_[1]
         self.leftChild = leftChild_
         self.nextSibling = nextSibling_
         
@@ -15,7 +18,7 @@ class HeapNode:
             self.leftChild = node
 # Function to merge two heaps
 def Merge(A, B):
-
+    
     # If any of the two-nodes is None
     # the return the not None node
     if(A == None):
@@ -56,12 +59,12 @@ class PairingHeap:
 
     # Returns the root value of the heap
     def Top(self):
-        return (self.root.key)
+        return (self.root.value)
 
     # Function to insert the new node in the heap
     def Insert(self, key):
         self.size+=1
-        self.root = Merge(self.root, HeapNode(key[0]))
+        self.root = Merge(self.root, HeapNode(key))
   
     # Function to delete the root node in heap
     def Delete(self):
@@ -75,21 +78,23 @@ class PairingHeap:
   
     
 
-# Driver Code
-if __name__ == '__main__':
+# # Driver Code
+# if __name__ == '__main__':
 
-    heap1, heap2 = PairingHeap(), PairingHeap()
-    heap2.Insert((5,1))
-    heap2.Insert((2,3))
+#     heap1, heap2 = PairingHeap(), PairingHeap()
+#     heap2.Insert((5,1))
+#     heap2.Insert((2,3))
 
-    heap2.Insert((6,0))
-    heap1.Insert((8,4))
-    heap1.Insert((3,99))
-    heap1.Insert((4,66))
-    heap1.Join(heap2)
-    heap1.Delete()
-    print(heap1.Top())
-    heap1.Insert((1,66))
-    print(heap2.Top())
-    print(heap1.Top())
-    print(heap1.Empty())
+#     heap2.Insert((6,0))
+#     heap1.Insert((8,4))
+#     heap1.Insert((4,99))
+#     heap1.Insert((4,"hij"))
+#     heap1.Insert((4,"'''k'''"))
+#     # heap1.Join(heap2)
+#     print(heap1.Top())
+#     heap1.Delete()
+#     print(heap1.Top())
+#     heap1.Insert((1,6))
+#     print(heap2.Top())
+#     print(heap1.Top())
+#     print(heap1.Empty())
