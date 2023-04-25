@@ -1,11 +1,12 @@
 import tkinter as tk
 from tkinter import ttk
 from datetime import datetime
+from PIL import ImageTk, Image  # Import the necessary modules
 
 
 window = tk.Tk()
 window.title('My Learning Track')
-window.geometry('700x450')
+window.geometry('333x500')
 window['bg'] = 'maroon'
 
 # Define the list of tasks with priority and deadline date
@@ -38,6 +39,19 @@ def remove_top_task():
         label.config(text="Well Done, No tasks left!!!")
         tree.delete(*tree.get_children()) #deletes all the items from a tkinter treeview widget
         #tree.get_children() returns a tuple of all the items in treeview and * unpacks the tuple in individual arguments
+        window.destroy()
+        window1 = tk.Tk()
+        window1.title('My Learning Track')
+        window1.geometry('333x500')
+
+        background_image = tk.PhotoImage(file="congo.png")
+        # Load the image file
+        canvas = tk.Canvas(width=333, height=500)
+        canvas.pack()
+        canvas.create_image(0, 0, anchor=tk.NW, image=background_image)
+
+        window1.mainloop()
+
 
 # Create a Checkbutton widget for the top priority task
 checkbox_text = tk.StringVar()
