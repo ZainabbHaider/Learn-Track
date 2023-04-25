@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import ttk
 from datetime import datetime
 from PIL import ImageTk 
+from todolist import TodoListApp
 
 window = tk.Tk()
 window.title('My Learning Track')
@@ -32,7 +33,7 @@ tasks = [
 ]
 
 # Sort tasks by priority
-tasks.sort(key=lambda x: x['priority'])
+# tasks.sort(key=lambda x: x['priority']) #pairing heap
 
 # Create a label widget to display the top priority task with deadline date
 label = tk.Label(window, text=f"Top priority task: {tasks[0]['course name']}, Deadline: {tasks[0]['deadline']}", background='#f7d7c4')

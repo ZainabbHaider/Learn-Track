@@ -3,9 +3,10 @@ class HeapNode:
     # creates a new node
     def __init__(self, key_=None, leftChild_=None, nextSibling_=None):
         # print("obj")
-        self.key = key_[0]
+        self.key = key_.priority
         # print(key_)
-        self.value = key_[1]
+        self.value = key_.task
+        self.todo = key_
         self.leftChild = leftChild_
         self.nextSibling = nextSibling_
         
@@ -51,6 +52,7 @@ class PairingHeap:
     def __init__(self):
         self.root = None
         self.size = 0
+        self.tasks = []
 
     # Returns true if root of the tree
     # is None otherwise returns false
@@ -59,7 +61,7 @@ class PairingHeap:
 
     # Returns the root value of the heap
     def Top(self):
-        return (self.root.value)
+        return (self.root.todo)
 
     # Function to insert the new node in the heap
     def Insert(self, key):
@@ -78,8 +80,10 @@ class PairingHeap:
     
     def traverse(self, node):
         if not node:
-            return
-        print(node.value, node.key)
+            return self.tasks
+        self.tasks.append(node.todo)
+        # print(node.value, node.key)
+        # print(self.tasks)
         if node.leftChild:
             self.traverse(node.leftChild)
         if node.nextSibling:
