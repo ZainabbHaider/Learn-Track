@@ -28,9 +28,9 @@ class TodolistApp:
 if __name__ == '__main__':
     root = tk.Tk()
     app = TodolistApp(root)
-    root.mainloop()
     personal = {}
-
+    root.mainloop()
+    
 
 class TodoListApp:
     def __init__(self, master):
