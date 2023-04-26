@@ -59,33 +59,46 @@ class TodoListApp:
 
         self.weightage_entry = tk.Entry(master, bg="white", fg="black")
         self.weightage_entry.pack()
+        
+        
+        self.label_priority = tk.Label(master, text ="Preference:", bg="maroon", fg="white")
+        self.label_priority.pack()
+        
+        self.priority_entry = tk.Entry(master, bg="white", fg= "black")
+        self.priority_entry.pack()
 
         self.deadline_label = tk.Label(master, text="Deadline", bg="maroon", fg="white")
         self.deadline_label.pack()
 
         self.deadline_entry = DateEntry(master, bg="white", date_pattern="yyyy-mm-dd")
         self.deadline_entry.pack()
-
         
-
         self.add_button = tk.Button(master, text="Add", command=self.add_todo, bg="white")
         self.add_button.pack()
 
+        
+        self.next_button = tk.Button(master, text="Next", command=self.go_next, bg="white")
+        self.next_button.pack()
+        
         self.todo_frame = tk.Frame(master, bg="white")
         self.todo_frame.pack()
-
+        
+    def go_next(self):
+        self.master.destroy()
     def add_todo(self):
         todo = self.todo_entry.get()
         subject = self.subject.get()
         weightage = self.weightage_entry.get()
         deadline = self.deadline_entry.get()
+        preference = self.priority_entry.get()
         deadline = deadline.split("-")
-        task1= Task(subject, int(weightage), (deadline), 0, todo)
+        task1= Task(subject, int(weightage), (deadline), int(preference), todo)
         self.P.Insert(task1)
         self.todo_entry.delete(0, tk.END)
         self.weightage_entry.delete(0, tk.END)
         self.deadline_entry.delete(0, tk.END)
-
+        self.subject.delete(0,tk.END)
+        self.priority_entry.delete(0,tk.END)
         self.todo_list.append((todo, weightage, deadline))
 
         todo_label = tk.Label(self.todo_frame, text=f"{todo}, weightage: {weightage}, deadline: {deadline}", bg="white", fg="black")
