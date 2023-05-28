@@ -32,6 +32,8 @@ if __name__ == '__main__':
     root.mainloop()
     
 
+pref = {"Good" : 2, "Average" : 4, "Bad" : 6}
+
 class TodoListApp:
     def __init__(self, master):
         self.P = PairingHeap()
@@ -41,7 +43,7 @@ class TodoListApp:
         master.configure(bg="maroon")
 
         self.todo_list = []
-
+        
         self.weightage_label = tk.Label(master, text="Subject", bg="maroon", fg="white")
         self.weightage_label.pack()
 
@@ -64,8 +66,22 @@ class TodoListApp:
         self.label_priority = tk.Label(master, text ="Preference:", bg="maroon", fg="white")
         self.label_priority.pack()
         
-        self.priority_entry = tk.Entry(master, bg="white", fg= "black")
-        self.priority_entry.pack()
+        
+        # create a list of items for the dropdown menu
+        options = ["Good", "Average", "Bad"]
+
+        # create a variable to store the selected item
+        self.selected_option = tk.StringVar()
+
+        # set the default value for the variable
+        self.selected_option.set(options[0])
+        print(self.selected_option.get())
+        # create the dropdown menu
+        self.dropdown = tk.OptionMenu(root, self.selected_option, *options)
+        self.dropdown.pack()
+
+        # self.priority_entry = tk.Entry(master, bg="white", fg= "black")
+        # self.priority_entry.pack()
 
         self.deadline_label = tk.Label(master, text="Deadline", bg="maroon", fg="white")
         self.deadline_label.pack()
@@ -90,15 +106,15 @@ class TodoListApp:
         subject = self.subject.get()
         weightage = self.weightage_entry.get()
         deadline = self.deadline_entry.get()
-        preference = self.priority_entry.get()
+        # preference = self.priority_entry.get()
         deadline = deadline.split("-")
-        task1= Task(subject, int(weightage), (deadline), int(preference), todo)
+        task1= Task(subject, int(weightage), (deadline), pref[self.selected_option.get()], todo)
         self.P.Insert(task1)
         self.todo_entry.delete(0, tk.END)
         self.weightage_entry.delete(0, tk.END)
         self.deadline_entry.delete(0, tk.END)
         self.subject.delete(0,tk.END)
-        self.priority_entry.delete(0,tk.END)
+        
         self.todo_list.append((todo, weightage, deadline))
 
         todo_label = tk.Label(self.todo_frame, text=f"{todo}, weightage: {weightage}, deadline: {deadline}", bg="white", fg="black")
@@ -223,10 +239,6 @@ if __name__ == '__main__':
     update_table()
 
     # Create a button to go back to the previous screen
-    back_button = tk.Button(window, text="Back", bg='#f7d7c4')
-    back_button.pack(side="bottom", pady=20)
-
-
 
     window.mainloop()
 
